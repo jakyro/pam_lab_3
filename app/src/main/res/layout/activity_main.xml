@@ -47,7 +47,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Overview"
+            android:text="Top Movies"
+            android:textAlignment="center"
+            android:textColor="@color/colorBasic"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All Movies"
             android:textAlignment="center"
             android:textColor="@color/colorBasic"
             android:textSize="18sp" />

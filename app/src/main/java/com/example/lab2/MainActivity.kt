@@ -15,35 +15,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val vpPager = findViewById<ViewPager>(R.id.pager)
-        vpPager.adapter = MyPagerAdapter(supportFragmentManager)
+        vpPager.adapter = MyPagerAdapter(supportFragmentManager, this)
         vpPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                setNavActive(position)
+            override fun onPageScrolled(pos: Int, posOffset: Float, posOffsetPx: Int) {
+                setActiveNavItem(pos)
             }
 
             override fun onPageSelected(position: Int) {
-
             }
         })
 
         val layout: LinearLayout = findViewById(R.id.navigation)
         layout.children.forEachIndexed { index, element ->
             (element as TextView).setOnClickListener {
-                setNavActive(index)
+                setActiveNavItem(index)
                 vpPager.setCurrentItem(index, true)
             }
         }
     }
 
-    private fun setNavActive(position: Int) {
+    private fun setActiveNavItem(position: Int) {
         val layout: LinearLayout = findViewById(R.id.navigation)
         layout.children.forEach { setActive(it as TextView, false) }
         val view: TextView = layout.getChildAt(position) as TextView
@@ -52,9 +47,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setActive(textView: TextView, isActive: Boolean) {
         if (isActive) {
-            textView.setTextColor(resources.getColor(R.color.colorAccent));
+            textView.setTextColor(resources.getColor(R.color.colorAccent, null))
         } else {
-            textView.setTextColor(resources.getColor(R.color.colorBasic));
+            textView.setTextColor(resources.getColor(R.color.colorBasic, null))
         }
 
     }

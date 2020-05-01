@@ -14,6 +14,9 @@ interface MovieService {
     @GET("movies_ratings")
     fun getMoviesAsync(): Deferred<Response<List<MovieModel>>>
 
+    @GET("top_movies")
+    fun getTopMoviesAsync(): Deferred<Response<List<MovieModel>>>
+
     @POST("movies")
     fun postMovieAsync(@Body data: SubmitMovieModel): Deferred<Response<Int>>
 

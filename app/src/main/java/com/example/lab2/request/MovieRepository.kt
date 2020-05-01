@@ -13,6 +13,14 @@ class MovieRepository(private val api: MovieService) : BaseRepository() {
         return movieResponse?.toMutableList();
     }
 
+    suspend fun getTopMovies(): MutableList<MovieModel>? {
+        val movieResponse = safeApiCall(
+            call = { api.getTopMoviesAsync().await() },
+            errorMessage = "Error Fetching Movies"
+        )
+        return movieResponse?.toMutableList();
+    }
+
     suspend fun postMovie(data: SubmitMovieModel): Int? {
         val insertedId = safeApiCall(
             call = { api.postMovieAsync(data).await() },
