@@ -27,7 +27,8 @@ class MovieList(private val viewModel: MovieListViewModel) : AbstractFragment() 
             adapter = viewAdapter
         }
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
-            viewAdapter.data = it.toTypedArray()
+            viewAdapter.setData(it.toTypedArray()
+            )
             dismissProgress()
         })
         return view

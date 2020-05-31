@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso
 class MovieListAdapter :
     RecyclerView.Adapter<MovieListAdapter.MyViewHolder>() {
 
-    var data: Array<MovieModel> = emptyArray()
+    private var data: Array<MovieModel> = emptyArray()
 
     fun setData(value: Array<MovieModel>, notify: Boolean = true) {
         data = value
