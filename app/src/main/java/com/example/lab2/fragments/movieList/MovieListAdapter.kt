@@ -12,18 +12,21 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab2.R
 import com.example.lab2.ViewMovie
+import com.example.lab2.common.Utils
 import com.example.lab2.model.MovieModel
 import com.squareup.picasso.Picasso
-import java.math.RoundingMode
 
 class MovieListAdapter :
     RecyclerView.Adapter<MovieListAdapter.MyViewHolder>() {
 
     var data: Array<MovieModel> = emptyArray()
-        set(value) {
-            field = value
-            notifyDataSetChanged();
+
+    fun setData(value: Array<MovieModel>, notify: Boolean = true) {
+        data = value
+        if (notify) {
+            notifyDataSetChanged()
         }
+    }
 
     class MyViewHolder(private val context: Context, val view: LinearLayout) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -54,9 +57,7 @@ class MovieListAdapter :
         movieCategoryTextViewModel.text = movie.category
 
         val ratingTextViewModel = holder.view.findViewById<TextView>(R.id.rating)
-        ratingTextViewModel.text =
-            movie.rating?.toBigDecimal()?.setScale(1, RoundingMode.HALF_EVEN)?.toPlainString()
-                ?: "N / A"
+        ratingTextViewModel.text = Utils.renderRating(movie.rating)
 
         val imageView: ImageView = holder.view.findViewById(R.id.imageView)
         Picasso
@@ -67,6 +68,5 @@ class MovieListAdapter :
             .into(imageView)
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = data.size
 }

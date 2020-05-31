@@ -14,22 +14,18 @@ class MyPagerAdapter(fragmentManager: FragmentManager?, activity: AppCompatActiv
     FragmentPagerAdapter(fragmentManager!!, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val allMovies: AllMoviesViewModel by activity.viewModels()
-    private val topMoves: TopMoviesViewModel by activity.viewModels()
+    private val topMovies: TopMoviesViewModel by activity.viewModels()
 
     override fun getCount(): Int {
-        return NUM_ITEMS
+        return 3
     }
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> MovieList(topMoves)
+            0 -> MovieList(topMovies)
             1 -> MovieList(allMovies)
             2 -> AddMovie()
             else -> MovieList(allMovies)
         }
-    }
-
-    companion object {
-        private const val NUM_ITEMS = 3
     }
 }

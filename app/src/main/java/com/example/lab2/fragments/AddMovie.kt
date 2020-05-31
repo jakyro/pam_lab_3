@@ -18,9 +18,7 @@ class AddMovie : AbstractFragment() {
     private val repository: MovieRepository = MovieRepository(ApiFactory.movieService)
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.add_movie, container, false)
@@ -33,7 +31,7 @@ class AddMovie : AbstractFragment() {
     private fun submitMovie(view: View) {
         showProgress()
         val data = collectData(view)
-        if (data.name.isEmpty() || data.category.isEmpty() || data.thumbnail.isEmpty() || data.year.isEmpty() || data.length.isEmpty()) {
+        if (!data.valid()) {
             Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
             dismissProgress()
         } else {

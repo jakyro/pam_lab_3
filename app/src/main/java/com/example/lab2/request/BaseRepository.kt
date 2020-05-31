@@ -13,7 +13,7 @@ open class BaseRepository {
                 data = result.data
             is Result.Error -> {
                 Log.d(
-                    "1.DataRepository",
+                    "BaseRepository",
                     "$errorMessage & Exception - ${result.exception}"
                 )
             }

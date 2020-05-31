@@ -10,38 +10,35 @@ class MovieRepository(private val api: MovieService) : BaseRepository() {
             call = { api.getMoviesAsync().await() },
             errorMessage = "Error Fetching Movies"
         )
-        return movieResponse?.toMutableList();
+        return movieResponse?.toMutableList()
     }
 
     suspend fun getTopMovies(): MutableList<MovieModel>? {
         val movieResponse = safeApiCall(
             call = { api.getTopMoviesAsync().await() },
-            errorMessage = "Error Fetching Movies"
+            errorMessage = "Error Fetching Top Movies"
         )
-        return movieResponse?.toMutableList();
+        return movieResponse?.toMutableList()
     }
 
     suspend fun postMovie(data: SubmitMovieModel): Int? {
-        val insertedId = safeApiCall(
+        return safeApiCall(
             call = { api.postMovieAsync(data).await() },
-            errorMessage = "Error Fetching Movies"
-        )
-        return insertedId;
+            errorMessage = "Error Posting Movie"
+        );
     }
 
     suspend fun getMovie(id: String): MovieModel? {
-        val movie = safeApiCall(
+        return safeApiCall(
             call = { api.getMovieAsync(id).await() },
-            errorMessage = "Error Fetching Movies"
-        )
-        return movie;
+            errorMessage = "Error Fetching Movie with ID=$id"
+        );
     }
 
     suspend fun postRating(data: SubmitRatingModel): Int? {
-        val insertedId = safeApiCall(
+        return safeApiCall(
             call = { api.postRatingAsync(data).await() },
-            errorMessage = "Error Fetching Movies"
+            errorMessage = "Error Posting Rating"
         )
-        return insertedId;
     }
 }

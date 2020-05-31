@@ -8,23 +8,26 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object ApiFactory {
-    private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+class ApiFactory {
+    companion object {
+        private val interceptor =
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    private val client = OkHttpClient().newBuilder()
-        .addInterceptor(interceptor)
-        .build()
+        private val client = OkHttpClient().newBuilder()
+            .addInterceptor(interceptor)
+            .build()
 
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+        private val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
-    private fun retrofit(): Retrofit = Retrofit.Builder()
-        .client(client)
-        .baseUrl("https://eucc.me/v1/")
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .build()
+        private fun retrofit(): Retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl("https://eucc.me/v1/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build()
 
-    val movieService: MovieService = retrofit().create(MovieService::class.java)
+        val movieService: MovieService = retrofit().create(MovieService::class.java)
+    }
 }

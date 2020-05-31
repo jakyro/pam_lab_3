@@ -6,4 +6,12 @@ data class SubmitMovieModel(
     val thumbnail: String,
     val year: String,
     val length: String
-)
+) {
+    fun valid(): Boolean {
+        return name.isNotEmpty()
+                && category.isNotEmpty()
+                && thumbnail.isNotEmpty()
+                && year.isNotEmpty()
+                && length.isNotEmpty()
+    }
+}

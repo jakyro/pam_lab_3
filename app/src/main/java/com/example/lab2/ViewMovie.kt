@@ -2,6 +2,7 @@ package com.example.lab2
 
 import android.os.Bundle
 import android.widget.*
+import com.example.lab2.common.Utils
 import com.example.lab2.model.MovieModel
 import com.example.lab2.model.SubmitRatingModel
 import com.example.lab2.request.ApiFactory
@@ -57,9 +58,7 @@ class ViewMovie : AbstractActivity() {
         movieCategoryTextViewModel.text = movie.category
 
         val ratingTextViewModel = findViewById<TextView>(R.id.rating)
-        ratingTextViewModel.text =
-            movie.rating?.toBigDecimal()?.setScale(1, RoundingMode.HALF_EVEN)?.toPlainString()
-                ?: "N / A"
+        ratingTextViewModel.text = Utils.renderRating(movie.rating)
 
         val imageView: ImageView = findViewById(R.id.imageView)
         Picasso
