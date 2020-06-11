@@ -6,6 +6,8 @@
     <string name="logo">Logo</string>
     <string name="description">Online movie database</string>
     <string name="top_week">Top This Week</string>
+    <string name="all_movies">All The Movies</string>
+    <string name="movies">Movies</string>
     <string name="movie_name">Movie name</string>
     <string name="movie_category">Movie Category</string>
     <string name="rating">8.6</string>
