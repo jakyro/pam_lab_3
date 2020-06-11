@@ -72,6 +72,6 @@ class ViewMovieAndroidTest {
     }
 
     private fun onViewAndDisplayed(cmp: Matcher<View>): ViewInteraction {
-        return onView(cmp).inRoot(CoreMatchers.not(isDialog())).check(matches(isDisplayed()))
+        return onView(cmp).inRoot(not(isDialog())).check(matches(isDisplayed()))
     }
 }

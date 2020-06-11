@@ -9,6 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import com.example.lab2.Utils.Companion.waitFor
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matcher
@@ -85,6 +86,7 @@ class MainActivityAndroidTest {
             .check(matches(displayedDescendant(R.string.top_week)))
             .check(matches(not(displayedDescendant(R.string.all_movies))))
             .perform(swipeLeft())
+            .perform(waitFor(100))
             .perform(swipeLeft())
             .check(matches(displayedDescendant(R.string.add_a_movie)))
     }
@@ -96,7 +98,9 @@ class MainActivityAndroidTest {
             .check(matches(displayedDescendant(R.string.top_week)))
             .check(matches(not(displayedDescendant(R.string.all_movies))))
             .perform(swipeLeft())
+            .perform(waitFor(100))
             .perform(swipeLeft())
+            .perform(waitFor(100))
             .perform(swipeLeft())
             .check(matches(displayedDescendant(R.string.add_a_movie)))
     }
