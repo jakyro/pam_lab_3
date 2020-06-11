@@ -25,6 +25,10 @@ class AddMovie : AbstractFragment() {
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
             submitMovie(view)
         }
+
+        view.findViewById<Button>(R.id.clear_button).setOnClickListener {
+            clearForm(view)
+        }
         return view
     }
 

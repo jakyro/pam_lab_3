@@ -16,6 +16,7 @@
     <string name="movie_year">Movie year (ex. 2005)</string>
     <string name="movie_length"><![CDATA[Movie length in minutes (ex. 134)]]></string>
     <string name="submit">Submit</string>
+    <string name="clear">Clear</string>
     <string name="movie_details">Movie Details</string>
     <string name="set_a_rating">Set a rating</string>
     <string name="ok">OK</string>
